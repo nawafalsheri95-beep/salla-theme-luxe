@@ -1,0 +1,55 @@
+﻿{#
+  Luxe Theme - Offer Banner with Countdown
+  Component path: home.offer-banner
+#}
+{% set img = component.image ?? '' %}
+{% set title = component.title ?? 'عرض محدود الوقت' %}
+{% set subtitle = component.subtitle ?? '' %}
+{% set end_date = component.end_date ?? '' %}
+{% set btn_text = component.btn_text ?? 'تسوق الآن' %}
+{% set btn_url = component.btn_url ?? '/offers' %}
+
+<section class="offer-banner-section" {% if img %}style="background-image: url('{{ img }}')"{% endif %}>
+  <div class="offer-banner-overlay"></div>
+  <div class="container-luxe">
+    <div class="offer-banner-inner">
+      <div class="offer-banner-content">
+        <p class="offer-tag">عرض خاص</p>
+        <h2 class="offer-title">{{ title }}</h2>
+        {% if subtitle %}
+          <p class="offer-subtitle">{{ subtitle }}</p>
+        {% endif %}
+        {% if end_date %}
+          <div class="countdown-wrapper">
+            <p class="countdown-label">ينتهي العرض بعد:</p>
+            <div class="countdown" data-end="{{ end_date }}">
+              <div class="countdown-unit">
+                <span class="countdown-num" data-days>00</span>
+                <span class="countdown-label">يوم</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-unit">
+                <span class="countdown-num" data-hours>00</span>
+                <span class="countdown-label">ساعة</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-unit">
+                <span class="countdown-num" data-minutes>00</span>
+                <span class="countdown-label">دقيقة</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-unit">
+                <span class="countdown-num" data-seconds>00</span>
+                <span class="countdown-label">ثانية</span>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        <a href="{{ btn_url }}" class="btn-primary btn-offer">
+          {{ btn_text }}
+          <i class="sicon-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

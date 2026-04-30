@@ -1,0 +1,111 @@
+﻿{#
+  Luxe Theme - Cart Page
+  Variables: cart, cart.items, cart.total, cart.sub_total
+#}
+{% extends "layouts.master" %}
+
+{% block content %}
+<div class="cart-page">
+  <div class="container-luxe">
+
+    <div class="page-header">
+      <h1 class="page-title">سلة التسوق</h1>
+      {% if cart.items | length > 0 %}
+        <span class="cart-items-count">{{ cart.items | length }} منتج</span>
+      {% endif %}
+    </div>
+
+    {% if cart.items | length > 0 %}
+      <div class="cart-layout">
+
+        {# Cart Items #}
+        <div class="cart-items-wrapper">
+          <salla-cart-items></salla-cart-items>
+        </div>
+
+        {# Cart Summary #}
+        <div class="cart-summary">
+          <div class="cart-summary-card">
+            <h2 class="summary-title">ملخص الطلب</h2>
+
+            <div class="summary-rows">
+              <div class="summary-row">
+                <span>المجموع الفرعي</span>
+                <salla-price price="{{ cart.sub_total }}"></salla-price>
+              </div>
+
+              {% if cart.shipping %}
+                <div class="summary-row">
+                  <span>الشحن</span>
+                  {% if cart.shipping.amount == 0 %}
+                    <span class="free-shipping">مجاني</span>
+                  {% else %}
+                    <salla-price price="{{ cart.shipping.amount }}"></salla-price>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if cart.discount %}
+                <div class="summary-row discount-row">
+                  <span>الخصم</span>
+                  <span class="discount-amount">-<salla-price price="{{ cart.discount }}"></salla-price></span>
+                </div>
+              {% endif %}
+
+              {% if store.settings.cart.apply_coupon_enabled %}
+                <div class="coupon-section">
+                  <salla-coupon></salla-coupon>
+                </div>
+              {% endif %}
+
+              <div class="summary-divider"></div>
+
+              <div class="summary-row total-row">
+                <strong>الإجمالي</strong>
+                <strong><salla-price price="{{ cart.total }}"></salla-price></strong>
+              </div>
+
+              {% if store.settings.tax.taxable_prices_enabled %}
+                <p class="tax-note">شامل ضريبة القيمة المضافة 15%</p>
+              {% endif %}
+            </div>
+
+            <a href="/checkout" class="btn-primary btn-full btn-checkout">
+              <i class="sicon-lock"></i>
+              إتمام الشراء
+            </a>
+
+            <a href="/products" class="btn-continue-shopping">
+              متابعة التسوق
+            </a>
+
+            {# Payment Icons #}
+            <div class="cart-payment-methods">
+              <p class="payment-label">طرق الدفع المتاحة</p>
+              <salla-payment-icons></salla-payment-icons>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    {% else %}
+      {# Empty Cart #}
+      <div class="empty-cart">
+        <div class="empty-cart-icon">
+          <i class="sicon-shopping-bag"></i>
+        </div>
+        <h2>سلتك فارغة</h2>
+        <p>لم تضف أي منتجات بعد</p>
+        <a href="/products" class="btn-primary">ابدأ التسوق</a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('dist/cart.js') }}" defer></script>
+{% endblock %}

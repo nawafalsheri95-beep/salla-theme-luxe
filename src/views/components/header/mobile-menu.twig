@@ -1,0 +1,61 @@
+﻿{# Luxe Theme - Mobile Menu #}
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="القائمة" aria-hidden="true">
+  <div class="mobile-menu-overlay" data-toggle="mobile-menu"></div>
+  <div class="mobile-menu-panel">
+
+    <div class="mobile-menu-header">
+      <a href="{{ store.url }}" class="mobile-logo">
+        {% if store.logo %}
+          <img src="{{ store.logo }}" alt="{{ store.name }}" height="40">
+        {% else %}
+          <span>{{ store.name }}</span>
+        {% endif %}
+      </a>
+      <button class="mobile-menu-close"
+              data-toggle="mobile-menu"
+              aria-label="إغلاق القائمة">
+        <i class="sicon-close"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-search">
+      <salla-search placeholder="ابحث عن منتج..."></salla-search>
+    </div>
+
+    <nav class="mobile-nav">
+      <salla-mega-menu mobile></salla-mega-menu>
+    </nav>
+
+    <div class="mobile-menu-footer">
+      <div class="mobile-contact">
+        {% if store.contacts.whatsapp %}
+          <a href="https://wa.me/{{ store.contacts.whatsapp }}" class="contact-link" target="_blank">
+            <i class="sicon-whatsapp"></i>
+            <span>واتساب</span>
+          </a>
+        {% endif %}
+        {% if store.contacts.email %}
+          <a href="mailto:{{ store.contacts.email }}" class="contact-link">
+            <i class="sicon-email"></i>
+            <span>{{ store.contacts.email }}</span>
+          </a>
+        {% endif %}
+      </div>
+      <div class="mobile-social">
+        {% if store.social.instagram %}
+          <a href="{{ store.social.instagram }}" target="_blank" aria-label="انستقرام"><i class="sicon-instagram"></i></a>
+        {% endif %}
+        {% if store.social.snapchat %}
+          <a href="{{ store.social.snapchat }}" target="_blank" aria-label="سناب شات"><i class="sicon-snapchat"></i></a>
+        {% endif %}
+        {% if store.social.twitter %}
+          <a href="{{ store.social.twitter }}" target="_blank" aria-label="تويتر/X"><i class="sicon-twitter"></i></a>
+        {% endif %}
+        {% if store.social.tiktok %}
+          <a href="{{ store.social.tiktok }}" target="_blank" aria-label="تيك توك"><i class="sicon-tiktok"></i></a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>

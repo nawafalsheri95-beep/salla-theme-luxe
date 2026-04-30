@@ -1,0 +1,16 @@
+﻿{
+  "name": "salla-theme-luxe",
+  "version": "1.0.0",
+  "description": "Luxe - Professional RTL Salla Theme",
+  "scripts": {
+    "dev": "salla theme preview",
+    "build": "salla theme build",
+    "publish": "salla theme publish"
+  },
+  "devDependencies": {
+    "@salla.sa/twilight-cli": "latest",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0"
+  }
+}

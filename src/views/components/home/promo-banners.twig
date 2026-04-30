@@ -1,0 +1,42 @@
+﻿{#
+  Luxe Theme - Promo Banners Component
+  Component path: home.promo-banners
+  Fields: banners[image, title, subtitle, url]
+  Layout: 1 large + 2 small, or 2 equal, or 3-4 grid
+#}
+{% set banners = component.banners ?? [] %}
+{% set count = banners | length %}
+
+<section class="promo-banners-section">
+  <div class="container-luxe">
+    <div class="promo-banners-grid promo-grid-{{ count }}">
+      {% for banner in banners %}
+        <a href="{{ banner.url ?? '#' }}"
+           class="promo-banner-item {{ loop.first and count >= 3 ? 'promo-banner-featured' : '' }}"
+           aria-label="{{ banner.title ?? '' }}">
+          <div class="promo-banner-img-wrapper">
+            <img src="{{ banner.image }}"
+                 alt="{{ banner.title ?? '' }}"
+                 class="promo-banner-img"
+                 loading="lazy"
+                 width="600" height="400">
+          </div>
+          {% if banner.title or banner.subtitle %}
+            <div class="promo-banner-content">
+              {% if banner.title %}
+                <h3 class="promo-banner-title">{{ banner.title }}</h3>
+              {% endif %}
+              {% if banner.subtitle %}
+                <p class="promo-banner-subtitle">{{ banner.subtitle }}</p>
+              {% endif %}
+              <span class="promo-banner-cta">
+                تسوق الآن
+                <i class="sicon-arrow-left"></i>
+              </span>
+            </div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

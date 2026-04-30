@@ -1,0 +1,99 @@
+﻿{
+  "name": "Luxe",
+  "version": "1.0.0",
+  "description": "ثيم فاخر وعصري لمتاجر سلة - تصميم احترافي يدعم RTL بالكامل",
+  "author": "Luxe Themes",
+  "settings": [
+    { "id": "header_is_sticky", "label": "تثبيت الهيدر عند التمرير", "type": "checkbox", "default": true },
+    { "id": "header_style", "label": "نمط الهيدر", "type": "select", "options": [{"value":"light","label":"فاتح"},{"value":"dark","label":"داكن"},{"value":"transparent","label":"شفاف"}], "default": "light" },
+    { "id": "show_top_bar", "label": "إظهار الشريط العلوي", "type": "checkbox", "default": true },
+    { "id": "top_bar_text", "label": "نص الشريط العلوي", "type": "string", "default": "شحن مجاني للطلبات فوق 200 ريال" },
+    { "id": "hero_style", "label": "نمط البنر الرئيسي", "type": "select", "options": [{"value":"full","label":"ممتد"},{"value":"boxed","label":"محدود"},{"value":"split","label":"مقسم"}], "default": "full" },
+    { "id": "products_per_row", "label": "عدد المنتجات في الصف", "type": "select", "options": [{"value":"3","label":"3"},{"value":"4","label":"4"},{"value":"5","label":"5"}], "default": "4" },
+    { "id": "product_card_style", "label": "نمط بطاقة المنتج", "type": "select", "options": [{"value":"classic","label":"كلاسيك"},{"value":"minimal","label":"مينيمال"},{"value":"bordered","label":"مؤطر"}], "default": "minimal" },
+    { "id": "show_quick_add", "label": "إظهار زر الإضافة السريعة", "type": "checkbox", "default": true },
+    { "id": "footer_style", "label": "نمط الفوتر", "type": "select", "options": [{"value":"dark","label":"داكن"},{"value":"light","label":"فاتح"}], "default": "dark" },
+    { "id": "show_newsletter", "label": "إظهار قسم النشرة البريدية", "type": "checkbox", "default": true },
+    { "id": "enable_add_product_toast", "label": "إشعار إضافة المنتج للسلة", "type": "checkbox", "default": true },
+    { "id": "imageZoom", "label": "تكبير صورة المنتج عند التحويم", "type": "checkbox", "default": true },
+    { "id": "show_brands", "label": "إظهار قسم الماركات", "type": "checkbox", "default": true },
+    { "id": "show_features_bar", "label": "إظهار شريط مميزات المتجر", "type": "checkbox", "default": true },
+    { "id": "enable_more_menu", "label": "تفعيل قائمة المزيد", "type": "checkbox", "default": true }
+  ],
+  "features": [
+    "component-slider",
+    "component-featured-products-1",
+    "component-featured-products-2",
+    "component-featured-products-3",
+    "component-latest-products",
+    "component-fixed-banner",
+    "component-photos-slider",
+    "component-store-features",
+    "component-testimonials",
+    "component-brands"
+  ],
+  "components": [
+    {
+      "name": "hero-slider",
+      "title": "السلايدر الرئيسي",
+      "icon": "sicon-image-carousel",
+      "path": "home.hero-slider",
+      "fields": [
+        {
+          "id": "slides",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 5,
+          "fields": [
+            { "id": "image", "type": "string", "format": "image", "label": "صورة البنر" },
+            { "id": "image_mobile", "type": "string", "format": "image", "label": "صورة الجوال" },
+            { "id": "title", "type": "string", "label": "العنوان الرئيسي" },
+            { "id": "subtitle", "type": "string", "format": "textarea", "label": "العنوان الفرعي" },
+            { "id": "btn_text", "type": "string", "label": "نص الزر" },
+            { "id": "btn_url", "type": "string", "format": "url", "label": "رابط الزر" },
+            { "id": "text_position", "type": "select", "label": "موضع النص", "options": [{"value":"center","label":"وسط"},{"value":"start","label":"يمين"},{"value":"end","label":"يسار"}] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "promo-banners",
+      "title": "بنرات ترويجية",
+      "icon": "sicon-image",
+      "path": "home.promo-banners",
+      "fields": [
+        {
+          "id": "banners",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 4,
+          "fields": [
+            { "id": "image", "type": "string", "format": "image", "label": "الصورة" },
+            { "id": "title", "type": "string", "label": "العنوان" },
+            { "id": "subtitle", "type": "string", "label": "النص الفرعي" },
+            { "id": "url", "type": "string", "format": "url", "label": "الرابط" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "offer-banner",
+      "title": "بنر العرض مع عداد تنازلي",
+      "icon": "sicon-discount",
+      "path": "home.offer-banner",
+      "fields": [
+        { "id": "image", "type": "string", "format": "image", "label": "صورة الخلفية" },
+        { "id": "title", "type": "string", "label": "عنوان العرض" },
+        { "id": "subtitle", "type": "string", "label": "وصف العرض" },
+        { "id": "end_date", "type": "string", "label": "تاريخ انتهاء العرض (YYYY-MM-DD)" },
+        { "id": "btn_text", "type": "string", "label": "نص الزر", "default": "تسوق الآن" },
+        { "id": "btn_url", "type": "string", "format": "url", "label": "رابط الزر" }
+      ]
+    }
+  ],
+  "fonts": ["DINNextLTArabic-Regular", "Dubai", "Estedad"]
+}

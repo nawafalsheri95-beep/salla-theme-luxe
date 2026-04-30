@@ -1,0 +1,119 @@
+﻿{#
+  Luxe Theme - Category / Products Listing Page
+  Variables: category, products, filters, pagination
+#}
+{% extends "layouts.master" %}
+
+{% block content %}
+<div class="category-page">
+
+  {# Category Hero Banner #}
+  {% if category.image %}
+    <div class="category-hero" style="background-image: url('{{ category.image }}')">
+      <div class="category-hero-overlay">
+        <div class="container-luxe">
+          <h1 class="category-hero-title">{{ category.name }}</h1>
+          {% if category.description %}
+            <p class="category-hero-desc">{{ category.description }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="category-header">
+      <div class="container-luxe">
+        <nav class="breadcrumb" aria-label="مسار التنقل">
+          <salla-breadcrumb></salla-breadcrumb>
+        </nav>
+        <h1 class="category-title">{{ category.name ?? 'جميع المنتجات' }}</h1>
+        {% if category.description %}
+          <p class="category-desc">{{ category.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="container-luxe">
+    <div class="category-layout">
+
+      {# Filters Sidebar #}
+      <aside class="filters-sidebar" id="filters-sidebar">
+        <div class="filters-header">
+          <h2 class="filters-title">تصفية المنتجات</h2>
+          <button class="filters-clear" id="clear-filters">مسح الكل</button>
+        </div>
+        <salla-filters></salla-filters>
+      </aside>
+
+      {# Products Grid #}
+      <div class="products-area">
+
+        {# Toolbar #}
+        <div class="products-toolbar">
+          <div class="products-count">
+            {% if products.total %}
+              <span>{{ products.total }} منتج</span>
+            {% endif %}
+          </div>
+          <div class="toolbar-actions">
+            <button class="filter-toggle-mobile btn-outline sm:hidden"
+                    data-toggle="filters-sidebar"
+                    aria-label="فلتر">
+              <i class="sicon-filter"></i>
+              فلتر
+            </button>
+            <div class="sort-wrapper">
+              <salla-sort-by></salla-sort-by>
+            </div>
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="grid" aria-label="عرض شبكة">
+                <i class="sicon-grid"></i>
+              </button>
+              <button class="view-btn" data-view="list" aria-label="عرض قائمة">
+                <i class="sicon-list"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# Testimonials Random #}
+        {% if store.settings.category.testimonial_enabled %}
+          <salla-testimonials-carousel></salla-testimonials-carousel>
+        {% endif %}
+
+        {# Products Grid #}
+        {% set cols = theme.settings.get('products_per_row', '4') %}
+        <div class="products-grid products-grid-{{ cols }}" id="products-grid">
+          {% if products.data | length > 0 %}
+            {% for product in products.data %}
+              {% component 'product.product-card' with { product: product } %}
+            {% endfor %}
+          {% else %}
+            <div class="empty-products">
+              <img src="{{ asset('images/empty.svg') }}" alt="لا توجد منتجات" width="200">
+              <h3>لا توجد منتجات</h3>
+              <p>لم يتم العثور على منتجات مطابقة</p>
+              <a href="/products" class="btn-primary">تصفح جميع المنتجات</a>
+            </div>
+          {% endif %}
+        </div>
+
+        {# Pagination #}
+        {% if products.last_page > 1 %}
+          <div class="pagination-wrapper">
+            <salla-pagination
+              current="{{ products.current_page }}"
+              total="{{ products.last_page }}">
+            </salla-pagination>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('dist/pages.js') }}" defer></script>
+{% endblock %}

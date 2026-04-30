@@ -1,0 +1,62 @@
+﻿{#
+  Luxe Theme - Hero Slider Component
+  Component path: home.hero-slider
+  Fields: slides[image, image_mobile, title, subtitle, btn_text, btn_url, text_position]
+#}
+{% set slides = component.slides ?? [] %}
+{% set hero_style = theme.settings.get('hero_style', 'full') %}
+
+<section class="hero-slider-section hero-{{ hero_style }}" aria-label="البنر الرئيسي">
+  <div class="hero-swiper swiper" id="hero-swiper">
+    <div class="swiper-wrapper">
+      {% for slide in slides %}
+        <div class="swiper-slide hero-slide">
+          {# Background Image #}
+          <picture>
+            {% if slide.image_mobile %}
+              <source media="(max-width: 768px)" srcset="{{ slide.image_mobile }}">
+            {% endif %}
+            <img src="{{ slide.image }}"
+                 alt="{{ slide.title ?? '' }}"
+                 class="hero-bg-img"
+                 loading="{{ loop.first ? 'eager' : 'lazy' }}"
+                 width="1920" height="700">
+          </picture>
+          <div class="hero-overlay"></div>
+
+          {# Slide Content #}
+          {% if slide.title or slide.subtitle or slide.btn_text %}
+            <div class="hero-content hero-content-{{ slide.text_position ?? 'center' }}">
+              <div class="hero-content-inner">
+                {% if slide.subtitle %}
+                  <p class="hero-subtitle animate-fade-in">{{ slide.subtitle }}</p>
+                {% endif %}
+                {% if slide.title %}
+                  <h2 class="hero-title animate-slide-up">{{ slide.title }}</h2>
+                {% endif %}
+                {% if slide.btn_text and slide.btn_url %}
+                  <a href="{{ slide.btn_url }}"
+                     class="hero-btn btn-primary animate-fade-in">
+                    {{ slide.btn_text }}
+                    <i class="sicon-arrow-left"></i>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {# Navigation #}
+    {% if slides | length > 1 %}
+      <button class="swiper-button-next hero-nav-btn" aria-label="التالي">
+        <i class="sicon-arrow-left"></i>
+      </button>
+      <button class="swiper-button-prev hero-nav-btn" aria-label="السابق">
+        <i class="sicon-arrow-right"></i>
+      </button>
+      <div class="swiper-pagination hero-pagination"></div>
+    {% endif %}
+  </div>
+</section>

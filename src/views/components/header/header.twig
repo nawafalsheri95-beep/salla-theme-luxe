@@ -1,0 +1,96 @@
+﻿{#
+  Luxe Theme - Header Component
+  Supports: sticky, light/dark/transparent styles, search, cart, wishlist, account
+#}
+{% set header_style = theme.settings.get('header_style', 'light') %}
+{% set is_sticky = theme.settings.get('header_is_sticky', true) %}
+
+<header id="site-header"
+  class="site-header header-{{ header_style }} {{ is_sticky ? 'is-sticky' : '' }}"
+  role="banner">
+
+  <div class="header-inner container-luxe">
+
+    {# Logo #}
+    <div class="header-logo">
+      <a href="{{ store.url }}" class="logo-link" aria-label="{{ store.name }}">
+        {% if store.logo %}
+          <img src="{{ store.logo }}"
+               alt="{{ store.name }}"
+               class="logo-img"
+               width="160"
+               height="50"
+               loading="eager">
+        {% else %}
+          <span class="logo-text">{{ store.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    {# Main Navigation #}
+    <nav class="header-nav" role="navigation" aria-label="القائمة الرئيسية">
+      <salla-mega-menu></salla-mega-menu>
+    </nav>
+
+    {# Header Actions #}
+    <div class="header-actions">
+
+      {# Search #}
+      <button class="action-btn search-toggle"
+              aria-label="بحث"
+              data-toggle="search-overlay">
+        <i class="sicon-search"></i>
+      </button>
+
+      {# Language / Currency Switcher #}
+      {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+        <salla-localization-modal></salla-localization-modal>
+      {% endif %}
+
+      {# Wishlist #}
+      <a href="/wishlist" class="action-btn wishlist-btn" aria-label="المفضلة">
+        <i class="sicon-heart"></i>
+        <salla-wishlist-count></salla-wishlist-count>
+      </a>
+
+      {# Cart #}
+      <button class="action-btn cart-btn"
+              aria-label="سلة التسوق"
+              data-toggle="cart-drawer">
+        <i class="sicon-shopping-bag"></i>
+        <salla-cart-count class="cart-badge"></salla-cart-count>
+      </button>
+
+      {# User Account #}
+      <div class="action-btn user-menu-wrapper">
+        <salla-user-menu></salla-user-menu>
+      </div>
+
+      {# Mobile Menu Toggle #}
+      <button class="action-btn mobile-menu-toggle lg:hidden"
+              aria-label="فتح القائمة"
+              data-toggle="mobile-menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu">
+        <i class="sicon-menu"></i>
+      </button>
+
+    </div>
+  </div>
+
+  {# Search Overlay #}
+  <div class="search-overlay" id="search-overlay" role="search">
+    <div class="search-overlay-inner container-luxe">
+      <salla-search></salla-search>
+      <button class="search-close"
+              data-toggle="search-overlay"
+              aria-label="إغلاق البحث">
+        <i class="sicon-close"></i>
+      </button>
+    </div>
+  </div>
+
+</header>
+
+{# Cart Drawer #}
+<salla-cart-drawer></salla-cart-drawer>

@@ -1,0 +1,107 @@
+﻿{#
+  Luxe Theme - Product Card Component
+  Used in category, home featured products, related products
+  Variables: product
+#}
+{% set card_style = theme.settings.get('product_card_style', 'minimal') %}
+{% set show_quick_add = theme.settings.get('show_quick_add', true) %}
+
+<article class="product-card product-card-{{ card_style }}" data-product-id="{{ product.id }}">
+  <div class="product-card-media">
+
+    {# Product Image #}
+    <a href="{{ product.url }}" class="product-card-img-link" aria-label="{{ product.name }}">
+      <img src="{{ product.thumbnail ?? product.image }}"
+           alt="{{ product.name }}"
+           class="product-card-img"
+           loading="lazy"
+           width="400" height="400">
+      {% if product.images | length > 1 %}
+        <img src="{{ product.images[1] }}"
+             alt="{{ product.name }}"
+             class="product-card-img-hover"
+             loading="lazy"
+             width="400" height="400">
+      {% endif %}
+    </a>
+
+    {# Badges #}
+    <div class="product-card-badges">
+      {% if product.old_price %}
+        <span class="badge badge-sale">
+          خصم {{ ((product.old_price - product.price) / product.old_price * 100) | round }}%
+        </span>
+      {% endif %}
+      {% if product.is_new %}
+        <span class="badge badge-new">جديد</span>
+      {% endif %}
+      {% if product.quantity == 0 %}
+        <span class="badge badge-sold-out">نفد</span>
+      {% endif %}
+    </div>
+
+    {# Card Actions Overlay #}
+    <div class="product-card-actions">
+      <salla-wishlist-button
+        product-id="{{ product.id }}"
+        class="card-action-btn"
+        aria-label="أضف للمفضلة">
+        <i class="sicon-heart"></i>
+      </salla-wishlist-button>
+
+      <a href="{{ product.url }}"
+         class="card-action-btn"
+         aria-label="عرض المنتج">
+        <i class="sicon-eye"></i>
+      </a>
+    </div>
+
+    {# Quick Add Button #}
+    {% if show_quick_add and product.quantity > 0 %}
+      <div class="product-card-quick-add">
+        <salla-add-product-button
+          product-id="{{ product.id }}"
+          class="btn-quick-add">
+          <i class="sicon-shopping-bag"></i>
+          أضف للسلة
+        </salla-add-product-button>
+      </div>
+    {% endif %}
+
+  </div>
+
+  <div class="product-card-body">
+    {# Brand #}
+    {% if product.brand %}
+      <p class="product-card-brand">{{ product.brand.name }}</p>
+    {% endif %}
+
+    {# Product Name #}
+    <h3 class="product-card-title">
+      <a href="{{ product.url }}">{{ product.name | slice(0, 50) }}</a>
+    </h3>
+
+    {# Rating #}
+    {% if store.settings.rating_enabled and product.rating %}
+      <div class="product-card-rating">
+        <salla-rating-stars rating="{{ product.rating.avg }}" size="sm"></salla-rating-stars>
+        <span class="rating-count">({{ product.rating.count }})</span>
+      </div>
+    {% endif %}
+
+    {# Total Sold #}
+    {% if store.settings.product.total_sold_enabled and product.sold_quantity %}
+      <p class="product-card-sold">تم بيع {{ product.sold_quantity }}+ قطعة</p>
+    {% endif %}
+
+    {# Price #}
+    <div class="product-card-price">
+      <salla-price
+        price="{{ product.price }}"
+        old-price="{{ product.old_price }}"
+        currency="{{ store.currency }}">
+      </salla-price>
+    </div>
+
+  </div>
+</article>

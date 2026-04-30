@@ -1,0 +1,143 @@
+﻿{#
+  Luxe Theme - Footer Component
+  Supports light/dark styles, social links, contact info, newsletter
+#}
+{% set footer_style = theme.settings.get('footer_style', 'dark') %}
+
+<footer class="site-footer footer-{{ footer_style }}" role="contentinfo">
+
+  {# Footer Main #}
+  <div class="footer-main">
+    <div class="container-luxe">
+      <div class="footer-grid">
+
+        {# Brand Column #}
+        <div class="footer-col footer-brand">
+          <a href="{{ store.url }}" class="footer-logo" aria-label="{{ store.name }}">
+            {% if store.logo %}
+              <img src="{{ store.logo }}" alt="{{ store.name }}" height="48" loading="lazy">
+            {% else %}
+              <span class="footer-store-name">{{ store.name }}</span>
+            {% endif %}
+          </a>
+          {% if store.description %}
+            <p class="footer-desc">{{ store.description | striptags | slice(0, 120) }}...</p>
+          {% endif %}
+
+          {# Social Links #}
+          <div class="footer-social">
+            {% if store.social.instagram %}
+              <a href="{{ store.social.instagram }}" target="_blank" rel="noopener" class="social-link" aria-label="انستقرام">
+                <i class="sicon-instagram"></i>
+              </a>
+            {% endif %}
+            {% if store.social.snapchat %}
+              <a href="{{ store.social.snapchat }}" target="_blank" rel="noopener" class="social-link" aria-label="سناب شات">
+                <i class="sicon-snapchat"></i>
+              </a>
+            {% endif %}
+            {% if store.social.twitter %}
+              <a href="{{ store.social.twitter }}" target="_blank" rel="noopener" class="social-link" aria-label="تويتر">
+                <i class="sicon-twitter"></i>
+              </a>
+            {% endif %}
+            {% if store.social.tiktok %}
+              <a href="{{ store.social.tiktok }}" target="_blank" rel="noopener" class="social-link" aria-label="تيك توك">
+                <i class="sicon-tiktok"></i>
+              </a>
+            {% endif %}
+            {% if store.social.youtube %}
+              <a href="{{ store.social.youtube }}" target="_blank" rel="noopener" class="social-link" aria-label="يوتيوب">
+                <i class="sicon-youtube"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Quick Links #}
+        <div class="footer-col">
+          <h3 class="footer-title">روابط سريعة</h3>
+          <ul class="footer-links">
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/categories">التصنيفات</a></li>
+            <li><a href="/products">جميع المنتجات</a></li>
+            <li><a href="/offers">العروض</a></li>
+            <li><a href="/brand">العلامات التجارية</a></li>
+          </ul>
+        </div>
+
+        {# Customer Service #}
+        <div class="footer-col">
+          <h3 class="footer-title">خدمة العملاء</h3>
+          <ul class="footer-links">
+            <li><a href="/page/about">من نحن</a></li>
+            <li><a href="/page/shipping-policy">سياسة الشحن</a></li>
+            <li><a href="/page/return-policy">الاسترجاع والاستبدال</a></li>
+            <li><a href="/page/privacy-policy">سياسة الخصوصية</a></li>
+            <li><a href="/page/terms">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+
+        {# Contact Info #}
+        <div class="footer-col">
+          <h3 class="footer-title">تواصل معنا</h3>
+          <ul class="footer-contact">
+            {% if store.contacts.whatsapp %}
+              <li>
+                <i class="sicon-whatsapp"></i>
+                <a href="https://wa.me/{{ store.contacts.whatsapp }}" target="_blank">
+                  {{ store.contacts.whatsapp }}
+                </a>
+              </li>
+            {% endif %}
+            {% if store.contacts.email %}
+              <li>
+                <i class="sicon-email"></i>
+                <a href="mailto:{{ store.contacts.email }}">{{ store.contacts.email }}</a>
+              </li>
+            {% endif %}
+            {% if store.contacts.phone %}
+              <li>
+                <i class="sicon-phone"></i>
+                <a href="tel:{{ store.contacts.phone }}">{{ store.contacts.phone }}</a>
+              </li>
+            {% endif %}
+          </ul>
+
+          {# Payment Methods #}
+          <div class="footer-payments">
+            <h4 class="footer-subtitle">طرق الدفع</h4>
+            <div class="payment-icons">
+              <salla-payment-icons></salla-payment-icons>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {# Footer Bottom Bar #}
+  <div class="footer-bottom">
+    <div class="container-luxe">
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">
+          &copy; {{ "now" | date("Y") }} {{ store.name }}. جميع الحقوق محفوظة.
+        </p>
+        {% if store.settings.tax.number %}
+          <p class="footer-tax">
+            الرقم الضريبي: {{ store.settings.tax.number }}
+          </p>
+        {% endif %}
+        <div class="footer-maroof">
+          {% if store.social.maroof %}
+            <a href="{{ store.social.maroof }}" target="_blank" rel="noopener" aria-label="منصة معروف">
+              <img src="{{ asset('images/maroof.svg') }}" alt="معروف" height="32" loading="lazy">
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>

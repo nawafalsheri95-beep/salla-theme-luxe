@@ -1,0 +1,203 @@
+﻿{#
+  Luxe Theme - Product Page
+  Variables: product, product.id, product.name, product.description,
+  product.price, product.images, product.options, product.quantity
+#}
+{% extends "layouts.master" %}
+
+{% block styles %}
+<style>
+  .product-page { padding: 40px 0 60px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="product-page">
+  <div class="container-luxe">
+
+    {# Breadcrumb #}
+    <nav class="breadcrumb" aria-label="مسار التنقل">
+      <salla-breadcrumb></salla-breadcrumb>
+    </nav>
+
+    {# Product Main Section #}
+    <div class="product-layout">
+
+      {# Product Gallery #}
+      <div class="product-gallery-wrapper">
+        <salla-product-images
+          product-id="{{ product.id }}"
+          zoom="{{ theme.settings.get('imageZoom', true) ? 'true' : 'false' }}">
+        </salla-product-images>
+      </div>
+
+      {# Product Info #}
+      <div class="product-info-wrapper">
+
+        {# Brand / Category Badge #}
+        {% if product.brand %}
+          <a href="{{ product.brand.url }}" class="product-brand-badge">
+            {{ product.brand.name }}
+          </a>
+        {% endif %}
+
+        {# Product Title #}
+        <h1 class="product-title">{{ product.name }}</h1>
+
+        {# Rating #}
+        {% if store.settings.rating_enabled and product.rating %}
+          <div class="product-rating">
+            <salla-rating-stars rating="{{ product.rating.avg }}" count="{{ product.rating.count }}"></salla-rating-stars>
+            <span class="rating-count">({{ product.rating.count }} تقييم)</span>
+          </div>
+        {% endif %}
+
+        {# Price #}
+        <div class="product-pricing">
+          <salla-price
+            price="{{ product.price }}"
+            old-price="{{ product.old_price }}"
+            currency="{{ store.currency }}">
+          </salla-price>
+          {% if product.old_price %}
+            <span class="discount-badge">
+              وفر {{ ((product.old_price - product.price) / product.old_price * 100) | round }}%
+            </span>
+          {% endif %}
+        </div>
+
+        {# Stock Status #}
+        <div class="product-stock">
+          {% if product.quantity > 0 %}
+            <span class="in-stock">
+              <i class="sicon-check-circle"></i>
+              متوفر في المخزون
+            </span>
+          {% else %}
+            <span class="out-of-stock">
+              <i class="sicon-close-circle"></i>
+              نفد المخزون
+            </span>
+          {% endif %}
+          {% if store.settings.product.total_sold_enabled and product.sold_quantity %}
+            <span class="sold-count">تم بيع {{ product.sold_quantity }}+ قطعة</span>
+          {% endif %}
+        </div>
+
+        {# Product Short Description #}
+        {% if product.short_description %}
+          <div class="product-short-desc">
+            {{ product.short_description | raw }}
+          </div>
+        {% endif %}
+
+        {# Product Options #}
+        <div class="product-options">
+          <salla-product-options product-id="{{ product.id }}"></salla-product-options>
+        </div>
+
+        {# Quantity Selector #}
+        <div class="product-quantity-wrapper">
+          <label class="qty-label">الكمية</label>
+          <salla-quantity-input></salla-quantity-input>
+        </div>
+
+        {# Add to Cart #}
+        <div class="product-actions">
+          <salla-add-product-button
+            product-id="{{ product.id }}"
+            class="btn-add-cart btn-primary btn-full">
+            <i class="sicon-shopping-bag"></i>
+            أضف للسلة
+          </salla-add-product-button>
+
+          <salla-wishlist-button
+            product-id="{{ product.id }}"
+            class="btn-wishlist btn-outline">
+            <i class="sicon-heart"></i>
+          </salla-wishlist-button>
+        </div>
+
+        {# Trust Badges #}
+        <div class="trust-badges">
+          <div class="trust-item">
+            <i class="sicon-shield-check"></i>
+            <span>دفع آمن 100%</span>
+          </div>
+          <div class="trust-item">
+            <i class="sicon-truck"></i>
+            <span>شحن سريع</span>
+          </div>
+          <div class="trust-item">
+            <i class="sicon-refresh"></i>
+            <span>إرجاع مجاني</span>
+          </div>
+          <div class="trust-item">
+            <i class="sicon-headphone"></i>
+            <span>دعم على مدار الساعة</span>
+          </div>
+        </div>
+
+        {# Share #}
+        <div class="product-share">
+          <salla-share-link></salla-share-link>
+        </div>
+
+      </div>
+    </div>
+
+    {# Product Description Tabs #}
+    <div class="product-tabs-section">
+      <div class="product-tabs">
+        <button class="tab-btn active" data-tab="description">وصف المنتج</button>
+        {% if store.settings.rating_enabled %}
+          <button class="tab-btn" data-tab="reviews">التقييمات</button>
+        {% endif %}
+        <button class="tab-btn" data-tab="shipping">الشحن والإرجاع</button>
+      </div>
+
+      <div class="tab-content active" id="description">
+        <div class="product-description prose">
+          {{ product.description | raw }}
+        </div>
+      </div>
+
+      {% if store.settings.rating_enabled %}
+        <div class="tab-content" id="reviews">
+          <salla-rating-full product-id="{{ product.id }}"></salla-rating-full>
+        </div>
+      {% endif %}
+
+      <div class="tab-content" id="shipping">
+        <div class="shipping-info">
+          <div class="shipping-item">
+            <i class="sicon-truck"></i>
+            <div>
+              <strong>الشحن السريع</strong>
+              <p>التوصيل خلال 2-5 أيام عمل</p>
+            </div>
+          </div>
+          <div class="shipping-item">
+            <i class="sicon-refresh"></i>
+            <div>
+              <strong>سياسة الإرجاع</strong>
+              <p>إرجاع مجاني خلال 14 يوم من الاستلام</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Related Products #}
+    <section class="related-products-section">
+      <h2 class="section-title">منتجات قد تعجبك</h2>
+      <salla-related-products product-id="{{ product.id }}"></salla-related-products>
+    </section>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('dist/product.js') }}" defer></script>
+{% endblock %}

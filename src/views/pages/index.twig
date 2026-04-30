@@ -1,0 +1,14 @@
+﻿{#
+  Luxe Theme - Home Page (index.twig)
+  Renders all home components
+#}
+{% extends "layouts.master" %}
+
+{% block content %}
+  {# Renders all enabled home components from twilight.json #}
+  {% component home %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ asset('dist/home.js') }}" defer></script>
+{% endblock %}

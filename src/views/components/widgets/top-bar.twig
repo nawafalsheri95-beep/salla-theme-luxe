@@ -1,0 +1,15 @@
+﻿{# Luxe Theme - Top Announcement Bar #}
+{% set bar_text = theme.settings.get('top_bar_text', 'شحن مجاني للطلبات فوق 200 ريال') %}
+<div class="top-bar" role="complementary">
+  <div class="container-luxe">
+    <div class="top-bar-inner">
+      <p class="top-bar-text">{{ bar_text }}</p>
+      {% if store.contacts.whatsapp %}
+        <a href="https://wa.me/{{ store.contacts.whatsapp }}" class="top-bar-link" target="_blank">
+          <i class="sicon-whatsapp"></i>
+          <span>تواصل معنا</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
