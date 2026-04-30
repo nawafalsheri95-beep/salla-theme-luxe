@@ -1,16 +1,13 @@
-﻿{
-  "name": {
-    "ar": "لوكس",
-    "en": "Luxe"
-  },
-  "repository": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
-  "author_email": "nawafalsheri95@gmail.com",
+{
+  "version": "1.0.0",
+  "theme_name": "Luxe",
+  "repo_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
+  "support_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
   "features": [
     "mega-menu",
     "fonts",
     "color",
     "breadcrumb",
-    "unite-cards-height",
     "component-featured-products",
     "component-fixed-banner",
     "component-products-slider",
@@ -22,120 +19,58 @@
   "settings": [
     {
       "type": "boolean",
-      "id": "header_is_sticky",
       "label": "تثبيت الهيدر عند التمرير",
+      "id": "header_is_sticky",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
     },
     {
-      "type": "items",
-      "id": "header_style",
-      "label": "نمط الهيدر",
-      "format": "dropdown-list",
-      "required": true,
-      "selected": [{ "label": "فاتح", "value": "light", "key": "header-light" }],
-      "options": [
-        { "label": "فاتح", "value": "light", "key": "header-light" },
-        { "label": "داكن", "value": "dark", "key": "header-dark" },
-        { "label": "شفاف", "value": "transparent", "key": "header-transparent" }
-      ],
-      "source": "Manual"
-    },
-    {
       "type": "boolean",
+      "label": "اظهار الشريط العلوي",
       "id": "show_top_bar",
-      "label": "إظهار الشريط العلوي",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
     },
     {
       "type": "string",
-      "id": "top_bar_text",
       "label": "نص الشريط العلوي",
+      "id": "top_bar_text",
       "format": "input",
-      "required": false,
       "value": "شحن مجاني للطلبات فوق 200 ريال"
     },
     {
-      "type": "items",
-      "id": "products_per_row",
-      "label": "عدد المنتجات في الصف",
-      "format": "dropdown-list",
-      "required": true,
-      "selected": [{ "label": "4 منتجات", "value": "4", "key": "four" }],
-      "options": [
-        { "label": "3 منتجات", "value": "3", "key": "three" },
-        { "label": "4 منتجات", "value": "4", "key": "four" },
-        { "label": "5 منتجات", "value": "5", "key": "five" }
-      ],
-      "source": "Manual"
-    },
-    {
-      "type": "items",
-      "id": "product_card_style",
-      "label": "نمط بطاقة المنتج",
-      "format": "dropdown-list",
-      "required": true,
-      "selected": [{ "label": "مينيمال", "value": "minimal", "key": "minimal" }],
-      "options": [
-        { "label": "كلاسيك", "value": "classic", "key": "classic" },
-        { "label": "مينيمال", "value": "minimal", "key": "minimal" },
-        { "label": "مؤطر", "value": "bordered", "key": "bordered" }
-      ],
-      "source": "Manual"
-    },
-    {
       "type": "boolean",
+      "label": "اظهار زر الاضافة السريعة",
       "id": "show_quick_add",
-      "label": "إظهار زر الإضافة السريعة للسلة",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
     },
     {
-      "type": "items",
-      "id": "footer_style",
-      "label": "نمط الفوتر",
-      "format": "dropdown-list",
-      "required": true,
-      "selected": [{ "label": "داكن", "value": "dark", "key": "dark" }],
-      "options": [
-        { "label": "داكن", "value": "dark", "key": "dark" },
-        { "label": "فاتح", "value": "light", "key": "light" }
-      ],
-      "source": "Manual"
-    },
-    {
       "type": "boolean",
+      "label": "اظهار النشرة البريدية",
       "id": "show_newsletter",
-      "label": "إظهار قسم النشرة البريدية",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
     },
     {
       "type": "boolean",
+      "label": "اشعار اضافة المنتج للسلة",
       "id": "enable_add_product_toast",
-      "label": "إشعار إضافة المنتج للسلة",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
     },
     {
       "type": "boolean",
+      "label": "تكبير صورة المنتج",
       "id": "imageZoom",
-      "label": "تكبير صورة المنتج عند التحويم",
       "format": "switch",
-      "required": false,
-      "value": true,
       "selected": true
+    },
+    {
+      "type": "string",
+      "id": "placeholder",
+      "format": "hidden",
+      "value": "images/placeholder.png"
     }
   ],
   "components": [
@@ -154,7 +89,6 @@
           "maxLength": 5,
           "fields": [
             { "id": "image", "type": "string", "format": "image", "label": "صورة البنر" },
-            { "id": "image_mobile", "type": "string", "format": "image", "label": "صورة الجوال" },
             { "id": "title", "type": "string", "label": "العنوان الرئيسي" },
             { "id": "subtitle", "type": "string", "format": "textarea", "label": "العنوان الفرعي" },
             { "id": "btn_text", "type": "string", "label": "نص الزر" },
@@ -179,7 +113,6 @@
           "fields": [
             { "id": "image", "type": "string", "format": "image", "label": "الصورة" },
             { "id": "title", "type": "string", "label": "العنوان" },
-            { "id": "subtitle", "type": "string", "label": "النص الفرعي" },
             { "id": "url", "type": "string", "format": "url", "label": "الرابط" }
           ]
         }
@@ -193,8 +126,7 @@
       "fields": [
         { "id": "image", "type": "string", "format": "image", "label": "صورة الخلفية" },
         { "id": "title", "type": "string", "label": "عنوان العرض" },
-        { "id": "subtitle", "type": "string", "label": "وصف العرض" },
-        { "id": "end_date", "type": "string", "label": "تاريخ انتهاء العرض (YYYY-MM-DD)" },
+        { "id": "end_date", "type": "string", "label": "تاريخ انتهاء العرض" },
         { "id": "btn_text", "type": "string", "label": "نص الزر" },
         { "id": "btn_url", "type": "string", "format": "url", "label": "رابط الزر" }
       ]
