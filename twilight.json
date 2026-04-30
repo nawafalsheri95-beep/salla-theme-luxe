@@ -11,58 +11,35 @@
     "component-featured-products",
     "component-fixed-banner",
     "component-products-slider",
-    "component-photos-slider",
     "component-store-features",
-    "component-testimonials",
     "filters"
   ],
   "settings": [
     {
       "type": "boolean",
-      "label": "تثبيت الهيدر عند التمرير",
+      "label": "Header Sticky",
       "id": "header_is_sticky",
       "format": "switch",
       "selected": true
     },
     {
       "type": "boolean",
-      "label": "اظهار الشريط العلوي",
+      "label": "Show Top Bar",
       "id": "show_top_bar",
       "format": "switch",
       "selected": true
     },
     {
-      "type": "string",
-      "label": "نص الشريط العلوي",
-      "id": "top_bar_text",
-      "format": "input",
-      "value": "شحن مجاني للطلبات فوق 200 ريال"
-    },
-    {
       "type": "boolean",
-      "label": "اظهار زر الاضافة السريعة",
-      "id": "show_quick_add",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "label": "اظهار النشرة البريدية",
+      "label": "Show Newsletter",
       "id": "show_newsletter",
       "format": "switch",
       "selected": true
     },
     {
       "type": "boolean",
-      "label": "اشعار اضافة المنتج للسلة",
+      "label": "Enable Add Product Toast",
       "id": "enable_add_product_toast",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "label": "تكبير صورة المنتج",
-      "id": "imageZoom",
       "format": "switch",
       "selected": true
     },
@@ -73,63 +50,5 @@
       "value": "images/placeholder.png"
     }
   ],
-  "components": [
-    {
-      "name": "hero-slider",
-      "title": "السلايدر الرئيسي",
-      "icon": "sicon-image-carousel",
-      "path": "home.hero-slider",
-      "fields": [
-        {
-          "id": "slides",
-          "type": "collection",
-          "format": "collection",
-          "required": true,
-          "minLength": 1,
-          "maxLength": 5,
-          "fields": [
-            { "id": "image", "type": "string", "format": "image", "label": "صورة البنر" },
-            { "id": "title", "type": "string", "label": "العنوان الرئيسي" },
-            { "id": "subtitle", "type": "string", "format": "textarea", "label": "العنوان الفرعي" },
-            { "id": "btn_text", "type": "string", "label": "نص الزر" },
-            { "id": "btn_url", "type": "string", "format": "url", "label": "رابط الزر" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "promo-banners",
-      "title": "بنرات ترويجية",
-      "icon": "sicon-image",
-      "path": "home.promo-banners",
-      "fields": [
-        {
-          "id": "banners",
-          "type": "collection",
-          "format": "collection",
-          "required": true,
-          "minLength": 1,
-          "maxLength": 4,
-          "fields": [
-            { "id": "image", "type": "string", "format": "image", "label": "الصورة" },
-            { "id": "title", "type": "string", "label": "العنوان" },
-            { "id": "url", "type": "string", "format": "url", "label": "الرابط" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "offer-banner",
-      "title": "بنر العرض مع عداد تنازلي",
-      "icon": "sicon-discount",
-      "path": "home.offer-banner",
-      "fields": [
-        { "id": "image", "type": "string", "format": "image", "label": "صورة الخلفية" },
-        { "id": "title", "type": "string", "label": "عنوان العرض" },
-        { "id": "end_date", "type": "string", "label": "تاريخ انتهاء العرض" },
-        { "id": "btn_text", "type": "string", "label": "نص الزر" },
-        { "id": "btn_url", "type": "string", "format": "url", "label": "رابط الزر" }
-      ]
-    }
-  ]
+  "components": []
 }
