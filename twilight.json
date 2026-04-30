@@ -3,52 +3,7 @@
   "theme_name": "Luxe",
   "repo_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
   "support_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
-  "features": [
-    "mega-menu",
-    "fonts",
-    "color",
-    "breadcrumb",
-    "component-featured-products",
-    "component-fixed-banner",
-    "component-products-slider",
-    "component-store-features",
-    "filters"
-  ],
-  "settings": [
-    {
-      "type": "boolean",
-      "label": "Header Sticky",
-      "id": "header_is_sticky",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "label": "Show Top Bar",
-      "id": "show_top_bar",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "label": "Show Newsletter",
-      "id": "show_newsletter",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "label": "Enable Add Product Toast",
-      "id": "enable_add_product_toast",
-      "format": "switch",
-      "selected": true
-    },
-    {
-      "type": "string",
-      "id": "placeholder",
-      "format": "hidden",
-      "value": "images/placeholder.png"
-    }
-  ],
+  "features": [],
+  "settings": [],
   "components": []
 }
