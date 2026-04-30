@@ -1,9 +1,46 @@
 {
-  "version": "1.0.0",
-  "theme_name": "Luxe",
-  "repo_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
-  "support_url": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
-  "features": [],
-  "settings": [],
+  "name": {
+    "ar": "لوكس",
+    "en": "Luxe"
+  },
+  "repository": "https://github.com/nawafalsheri95-beep/salla-theme-luxe",
+  "author_email": "nawafalsheri95@gmail.com",
+  "features": [
+    "mega-menu",
+    "fonts",
+    "color",
+    "breadcrumb",
+    "component-featured-products",
+    "component-fixed-banner",
+    "component-products-slider",
+    "component-store-features",
+    "filters"
+  ],
+  "settings": [
+    {
+      "id": "header_is_sticky",
+      "type": "boolean",
+      "format": "switch",
+      "label": "Header Sticky",
+      "description": null,
+      "required": false,
+      "selected": true
+    },
+    {
+      "id": "show_newsletter",
+      "type": "boolean",
+      "format": "switch",
+      "label": "Show Newsletter",
+      "description": null,
+      "required": false,
+      "selected": true
+    },
+    {
+      "type": "string",
+      "id": "placeholder",
+      "format": "hidden",
+      "value": "images/placeholder.png"
+    }
+  ],
   "components": []
 }
